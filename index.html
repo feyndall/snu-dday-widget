@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모의고사 및 수능 D-Day</title>
+    <style>
+        body {
+            /* 세리프(명조체) 폰트 스택 적용 */
+            font-family: "Nanum Myeongjo", "Apple Myungjo", "Batang", "Georgia", "Times New Roman", serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: transparent; 
+        }
+        /* 세 개의 카드를 감싸는 부모 레이아웃 */
+        .wrapper {
+            display: flex;
+            gap: 20px; /* 카드 사이의 간격 */
+            flex-wrap: wrap; /* 너비가 좁아지면 아래로 떨어지도록 설정 */
+            justify-content: center;
+            padding: 20px;
+        }
+        /* 개별 카드 스타일 */
+        .widget-card {
+            text-align: center;
+            padding: 30px 40px;
+            border-radius: 12px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
+            border: 1px solid #e9e9e7; 
+            min-width: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #787774;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+        /* D-Day 공통 스타일 */
+        .d-day {
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin: 0;
+        }
+        /* 6모, 9모 색상 및 크기 (서울대 로고색) */
+        .d-day.snu {
+            font-size: 40px; 
+            color: #0F0F70; 
+        }
+        /* 수능 색상 및 크기 (선명한 빨간색) */
+        .d-day.main {
+            font-size: 48px; 
+            color: #E03E3E; 
+        }
+        .date-info {
+            font-size: 12px;
+            color: #9f9e9b;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="widget-card">
+            <div class="label">6월 모의평가</div>
+            <div class="d-day snu" id="dday-6mo">계산 중...</div>
+            <div class="date-info">2026년 6월 4일 목요일</div>
+        </div>
+        
+        <div class="widget-card">
+            <div class="label">9월 모의평가</div>
+            <div class="d-day snu" id="dday-9mo">계산 중...</div>
+            <div class="date-info">2026년 9월 2일 수요일</div>
+        </div>
+
+        <div class="widget-card">
+            <div class="label">2027학년도 수능</div>
+            <div class="d-day main" id="dday-suneung">계산 중...</div>
+            <div class="date-info">2026년 11월 19일 목요일</div>
+        </div>
+    </div>
+
+    <script>
+        function calcDday(targetDateString, elementId) {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0); 
+            
+            const targetDate = new Date(targetDateString);
+            const diffTime = targetDate.getTime() - today.getTime();
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            let displayText = "";
+            if (diffDays > 0) {
+                displayText = `D - ${diffDays}`;
+            } else if (diffDays === 0) {
+                displayText = "D-Day";
+            } else {
+                displayText = `D + ${Math.abs(diffDays)}`;
+            }
+            
+            document.getElementById(elementId).innerText = displayText;
+        }
+
+        function updateAll() {
+            calcDday('2026-06-04T00:00:00+09:00', 'dday-6mo');
+            calcDday('2026-09-02T00:00:00+09:00', 'dday-9mo');
+            calcDday('2026-11-19T00:00:00+09:00', 'dday-suneung');
+        }
+
+        updateAll();
+        setInterval(updateAll, 1000 * 60 * 60); 
+    </script>
+</body>
+</html>
