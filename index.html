@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>모의고사 및 수능 D-Day</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;900&display=swap" rel="stylesheet">
+    
     <style>
         body {
-            /* 세리프(명조체) 폰트 스택 적용 */
-            font-family: "Nanum Myeongjo", "Apple Myungjo", "Batang", "Georgia", "Times New Roman", serif;
+            /* 영문/숫자는 Georgia 최우선, 한글은 Noto Serif KR 강제 적용 */
+            font-family: "Georgia", "Times New Roman", "Noto Serif KR", serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -15,15 +20,13 @@
             margin: 0;
             background-color: transparent; 
         }
-        /* 세 개의 카드를 감싸는 부모 레이아웃 */
         .wrapper {
             display: flex;
-            gap: 20px; /* 카드 사이의 간격 */
-            flex-wrap: wrap; /* 너비가 좁아지면 아래로 떨어지도록 설정 */
+            gap: 20px; 
+            flex-wrap: wrap; 
             justify-content: center;
             padding: 20px;
         }
-        /* 개별 카드 스타일 */
         .widget-card {
             text-align: center;
             padding: 30px 40px;
@@ -38,23 +41,20 @@
         }
         .label {
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 600; /* 중간 굵기 적용 */
             color: #787774;
             margin-bottom: 12px;
             letter-spacing: 0.5px;
         }
-        /* D-Day 공통 스타일 */
         .d-day {
-            font-weight: 800;
+            font-weight: 900; /* 가장 굵은 굵기 강제 적용 */
             letter-spacing: -1px;
             margin: 0;
         }
-        /* 6모, 9모 색상 및 크기 (서울대 로고색) */
         .d-day.snu {
             font-size: 40px; 
             color: #0F0F70; 
         }
-        /* 수능 색상 및 크기 (선명한 빨간색) */
         .d-day.main {
             font-size: 48px; 
             color: #E03E3E; 
@@ -63,6 +63,7 @@
             font-size: 12px;
             color: #9f9e9b;
             margin-top: 12px;
+            font-family: "Noto Serif KR", serif; /* 날짜 부분도 명조체 통일 */
         }
     </style>
 </head>
